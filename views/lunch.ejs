@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<% include layout/head %>
+
+<body>
+    <% include layout/nav %>
+    <div class="container">
+        <div class="row mt-4">
+            <h1>급식 알아보기</h1>
+            <div class="col-10 offset-1">
+                <form class="form-inline" method="post">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="date" class="sr-only">날짜</label>
+                        <input type="date" name="date" class="form-control" id="date">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">검색하기</button>
+                </form>
+            </div>
+        </div>
+        <% if(typeof menu != 'undefined') { %>
+            <div class="row mt-4">
+                <div class="col-10 offset-1">
+                <div class="card">
+                    <div class="card-header">급식 메뉴</div>
+                    <div class="card-body">
+                        <%= menu %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</body>
+
+</html>

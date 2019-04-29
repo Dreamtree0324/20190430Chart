@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<% include layout/head %>
+
+<body>
+    <% include layout/nav %>
+    <div class="container">
+        <div class="row mt-4">
+            <form method="post">
+                제목: <input type="text" name="title"><br>
+                글쓴이: <input type="text" name="writer"><br>
+                글내용: <textarea name="content"></textarea>
+                <input class="btn btn-success" type="submit" value="전송">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

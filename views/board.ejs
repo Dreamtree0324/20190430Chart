@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<% include layout/head %>
+
+<body>
+    <% include layout/nav %>
+    <div class="container">
+        <div class="row mt-4">
+            <h1>게시판</h1>
+            <div class="col-10 offset-1">
+                <table class="table table-striped">
+                    <tr>
+                        <th>글번호</th>
+                        <th width="60%">글제목</th>
+                        <th>글쓴이</th>
+                    </tr>
+
+                    <% for(let i =0; i < list.length; i++){ %>
+                       <tr>
+                           <td><%= list[i].id %></td>
+                           <td><%= list[i].title %></td>
+                           <td><%= list[i].writer %></td>
+                       </tr> 
+                    <% } %>
+                </table>
+                <a href="/board/write" class="btn btn-primary">글쓰기</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
