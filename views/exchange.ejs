@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<% include layout/head %>
+
+<body>
+    <% include layout/nav %>
+    <div class="container">
+        <div class="row mt-4">
+            <h1>환율</h1>
+            <div class="col-10 offset-1">
+                <table class="table table-striped">
+
+                    <th>상승 환율 (기준시간 : <span name="time"><%= result[4].text(); %></span>)</th>
+                    <th>국가 (통화 단위)</th>
+                    <% for(let i = 0; i < result[0].length; i++){ %>
+                    <tr>
+                        <td name="upex"><%= result[0][i] %></td>
+                        <td name="upco"><%= result[2][i] %></td>
+                    </tr>
+                    <% }%>
+
+
+                    <table class="table table-striped">
+                        <th>하락 환율 (기준시간 : <span><%= result[4].text(); %></span>)</th>
+                        <th>국가 (통화 단위)</th>
+                        <% for(let i = 0; i < result[1].length; i++){ %>
+                        <tr>
+                            <td name="dwex"><%= result[1][i] %></td>
+                            <td name="upco"><%= result[3][i] %></td>
+                        </tr>
+                        <% }%>
+                    </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
