@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<% include layout/head %>
+
+<body>
+    <% include layout/nav %>
+    <div class="container">
+        <div class="row mt-4">
+            <h1>데이터 차트 검색 결과</h1>
+            <div class="col-10 offset-1">
+                <canvas id="myChart" width="600" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    new Chart(document.getElementById("myChart"),
+        {
+            "type": "line",
+            "data": <%- JSON.stringify(g) %>,
+            "options": {}
+        });
+</script>
+
+</html>
