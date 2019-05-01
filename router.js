@@ -147,21 +147,25 @@ router.get('/datalab', function (req, res) {
 });
 
 router.post("/datalab", function (req, res) {
-    let data = [
-        {
-            "groupName": req.body.stitle,
-            "keywords": req.body.skeywords.split(",")
+    let data = [];
+
+    for(let i = 0; i < 2 ; i++){
+        data.push({"groupName": req.body.stitle.split(",")[i], "keywords": req.body.skeywords.split(",")})
+        if(req.body.stitle.split(",").length == 1){
+            break;
         }
-    ];
+    };
 
     datalab("2019-02-01", "2019-04-30", "week", data, function (result) {
         let colors = ["rgb(255,192,192)", "rgb(75,192,255)", "rgb(192,75,255)"];
 
         let gData = { "labels": [], "datasets": [] };
 
+        let gDataList = [];
+        let gItemList = [];
         let r = result.results;
-        console.log(result);
         for (let i = 0; i < r.length; i++) {
+
             let item = {
                 "label": r[i].title,
                 "borderColor": colors[i],
@@ -170,18 +174,23 @@ router.post("/datalab", function (req, res) {
                 "data": []
             };
 
+            gItemList.push(item);
+
             for (let j = 0; j < r[i].data.length; j++) {
-                item.data.push(r[i].data[j].ratio);
+                gItemList[i].data.push(r[i].data[j].ratio);
                 if (i == 0) {
                     let date = r[i].data[j].period;
                     let arr = date.split("-");
                     gData.labels.push(arr[1] + arr[2]);
                 }
+
+                gDataList.push(gData);
+
             }
 
-            gData.datasets.push(item);
+            gDataList[i].datasets.push(gItemList[i]);
+
         }
-        console.log(gData);
 
         res.render('datalab2', { g: gData });
 
